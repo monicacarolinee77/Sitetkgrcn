@@ -1,3 +1,4 @@
+import Link from "next/link";
 import HeroProduct from "@/components/HeroProduct";
 import Testimonials from "@/components/Testimonials_new";
 import FAQ from "@/components/FAQ_new";
@@ -233,6 +234,24 @@ export default function Home() {
               {t}
             </a>
           ))}
+        </div>
+      </section>
+
+      {/* RTP Page Link */}
+      <section className="container-main pb-12 lg:pb-16 anim-fade-up">
+        <div className="text-center">
+          <Link
+            href="/rtp"
+            className="btn btn-secondary inline-flex items-center gap-2 px-8 py-4 text-lg hover:border-cyan/50 hover:text-cyan transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            Lihat RTP Slot Tertinggi 2026
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="ml-2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
       </section>
       
