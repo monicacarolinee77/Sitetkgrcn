@@ -48,7 +48,10 @@ export const metadata: Metadata = {
     canonical: "https://tokogacor.run/",
   },
   verification: {
-    google: "a8SFZEB231Y1OawnznizukzZFSyP5S_bFnt0i7DD23U",
+    google: [
+      "a8SFZEB231Y1OawnznizukzZFSyP5S_bFnt0i7DD23U",  // tokogacor.run (Vercel)
+      "027e5okYKR3QK4D1Sp-y0Gv8Yt4jRwj9I1YO5PDzJtA",  // tokogacorslot.netlify.app (Netlify)
+    ],
   },
   openGraph: {
     title: "TOKOGACOR® — game mabar Mantap Kemenangan Berlimpah | Login Resmi 2026",
