@@ -47,6 +47,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://tokogacor.run/",
   },
+  verification: {
+    google: "a8SFZEB231Y1OawnznizukzZFSyP5S_bFnt0i7DD23U",
+  },
   openGraph: {
     title: "TOKOGACOR® — game mabar Mantap Kemenangan Berlimpah | Login Resmi 2026",
     description: "Link resmi TOKOGACOR stabil 24 jam. Login 5 detik, deposit Rp 10.000, bonus harian transparan. Panduan lengkap 2026.",
