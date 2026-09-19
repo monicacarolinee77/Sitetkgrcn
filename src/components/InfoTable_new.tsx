@@ -1,5 +1,7 @@
 const rows = [
   ["Nama Situs", "TOKOGACOR Resmi 2026"],
+  ["Tipe Situs", "Tokogacor Official & Resmi"],
+  ["Produk", "Tokogacor Slot, Togel, Casino, Sportsbook"],
   ["Minimal Deposit", "Rp 10.000"],
   ["Minimal Withdraw", "Rp 50.000"],
   ["Metode", "Bank • E-Wallet • QRIS"],

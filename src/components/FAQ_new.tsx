@@ -4,22 +4,22 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Apa itu TOKOGACOR?",
-    a: "Platform situs slot dengan konsep game mabar mantap — akses cepat via tokogacor.run, stabil di HP & desktop.",
+    a: "Platform situs slot dengan konsep game mabar mantap — akses cepat via tokogacor.run, stabil di HP & desktop. TOKOGACOR adalah tokogacor resmi dan tokogacor official yang menyediakan tokogacor slot terlengkap.",
     icon: "🎮",
   },
   {
     q: "Cara akses link resmi?",
-    a: "Buka tokosoon.site/register?ref=zrg2e2s, lalu login. Simpan di bookmark.",
+    a: "Buka tokosoon.site/auth/register?ref=zrg2e2s, lalu login. Simpan di bookmark. Ini adalah link resmi tokogacor web yang stabil 24 jam.",
     icon: "🔗",
   },
   {
     q: "Apakah aman?",
-    a: "Ya, keamanan berlapis dan enkripsi. Selalu pakai link resmi.",
+    a: "Ya, keamanan berlapis dan enkripsi. Selalu pakai link resmi tokogacor resmi untuk transaksi deposit tokogacor dan withdrawl tokogacor.",
     icon: "🔒",
   },
   {
     q: "Minimal deposit?",
-    a: "Rp 10.000 deposit, Rp 50.000 withdraw. Bank, E-Wallet & QRIS.",
+    a: "Rp 10.000 deposit, Rp 50.000 withdraw. Bank, E-Wallet & QRIS. Proses deposit tokogacor dan withdrawl tokogacor rata-rata kurang dari 3 menit.",
     icon: "💰",
   },
 ];
@@ -98,7 +98,7 @@ export default function FAQ() {
         <div className="mt-8 text-center anim-fade-up anim-delay-200">
           <p className="body-sm text-foreground/50">
             Masih ada pertanyaan?{" "}
-            <a href="https://tokosoon.site/register?ref=zrg2e2s" className="text-cyan hover:underline font-medium transition-colors">
+            <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline font-medium transition-colors">
               Daftar sekarang
             </a>{" "}
             untuk akses penuh

@@ -77,7 +77,7 @@ export default function Home() {
               <h2>Apa Itu TOKOGACOR?</h2>
               <p>
                 <strong className="text-cyan">TOKOGACOR</strong> adalah platform 
-                <a href="https://tokosoon.site/register?ref=zrg2e2s">situs slot</a> 
+                <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" target="_blank" rel="noopener noreferrer">situs slot</a> 
                 dengan konsep <em>game mabar mantap</em> — bermain bareng yang cepat dan penuh peluang 
                 <strong className="text-cyan">kemenangan berlimpah</strong>. Alurnya ringkas, tanpa langkah berbelit.
               </p>
@@ -85,16 +85,28 @@ export default function Home() {
                 Tiga fokus utama: akses stabil di semua perangkat, login singkat yang aman, 
                 dan reward transparan yang tercatat jelas.
               </p>
+              <p>
+                Sebagai <strong className="text-cyan">tokogacor resmi</strong> dan 
+                <strong className="text-cyan">tokogacor official</strong>, kami menyediakan 
+                <strong className="text-cyan">tokogacor slot</strong> terlengkap, 
+                <strong className="text-cyan">tokogacor web</strong> yang responsif, 
+                serta layanan <strong className="text-cyan">deposit tokogacor</strong> dan 
+                <strong className="text-cyan">withdrawl tokogacor</strong> tercepat.
+              </p>
             </section>
 
             <div className="section-divider" />
 
             <section id="cara-daftar" className="anim-slide-up">
               <h2>Cara Daftar & Login Resmi</h2>
+              <p>
+                Untuk mendapatkan akses ke <strong className="text-cyan">link resmi TOKOGACOR</strong> dan 
+                <strong className="text-cyan">login tokogacor resmi</strong>, ikuti langkah-langkah berikut:
+              </p>
               <ol>
                 <li>
-                  Buka <a href="https://tokosoon.site/register?ref=zrg2e2s">tokosoon.site</a> 
-                  atau <a href="https://tokosoon.site/register?ref=zrg2e2s">tokosoon.site</a>
+                  Buka <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" target="_blank" rel="noopener noreferrer">tokosoon.site</a> 
+                  atau <a href="https://tokosoon.site/auth/login?ref=zrg2e2s" target="_blank" rel="noopener noreferrer">tokosoon.site</a>
                 </li>
                 <li>Klik <strong className="text-cyan">DAFTAR</strong> → isi username & password</li>
                 <li>Verifikasi → <strong className="text-cyan">LOGIN</strong> dan klaim bonus new member</li>
@@ -110,6 +122,11 @@ export default function Home() {
                 Minimal deposit <strong className="text-cyan">Rp 10.000</strong>, 
                 withdraw <strong className="text-cyan">Rp 50.000</strong>. 
                 Proses rata-rata {"<"} 3 menit.
+              </p>
+              <p>
+                Proses <strong className="text-cyan">deposit tokogacor</strong> dan 
+                <strong className="text-cyan">withdrawl tokogacor</strong> cepat dan aman. 
+                Kami menyediakan berbagai metode pembayaran untuk kenyamanan Anda.
               </p>
             </section>
 
@@ -131,7 +148,7 @@ export default function Home() {
               <p>
                 TOKOGACOR menghadirkan ekosistem permainan lengkap dalam satu akun. 
                 Semua produk dapat diakses setelah 
-                <a href="https://tokosoon.site/register?ref=zrg2e2s">daftar</a> 
+                <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" target="_blank" rel="noopener noreferrer">daftar</a> 
                 dan login — tanpa perlu pindah platform.
               </p>
               
@@ -140,7 +157,7 @@ export default function Home() {
                 Coba keberuntungan Anda dalam permainan togel online yang menarik. 
                 Temukan pengalaman bermain yang seru dengan berbagai pilihan pasaran 
                 dan kesempatan memenangkan hadiah besar. 
-                <a href="https://tokosoon.site/register?ref=zrg2e2s">Daftar sekarang</a> 
+                <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" target="_blank" rel="noopener noreferrer">Daftar sekarang</a> 
                 untuk mulai menikmati sensasi taruhan togel secara online!
               </p>
 
@@ -148,7 +165,7 @@ export default function Home() {
               <p>
                 Nikmati sensasi tak terlupakan permainan slot online dengan beragam tema menarik, 
                 bonus menggiurkan, dan kesempatan memenangkan hadiah besar. 
-                <a href="https://tokosoon.site/register?ref=zrg2e2s">Mainkan slot online sekarang</a> 
+                <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" target="_blank" rel="noopener noreferrer">Mainkan slot online sekarang</a> 
                 dan rasakan keseruan tanpa batas!
               </p>
 
@@ -157,7 +174,7 @@ export default function Home() {
                 Jelajahi dunia permainan casino online yang mengasyikkan dan menghibur. 
                 Nikmati beragam permainan menarik seperti baccarat, sweet bonanza, roulette, 
                 langsung dari kenyamanan rumah Anda. 
-                <a href="https://tokosoon.site/register?ref=zrg2e2s">Bergabunglah sekarang</a> 
+                <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" target="_blank" rel="noopener noreferrer">Bergabunglah sekarang</a> 
                 dan alami kegembiraan tak terbatas dari permainan casino virtual.
               </p>
 
@@ -165,7 +182,7 @@ export default function Home() {
               <p>
                 Rasakan sensasi permainan SPORTSBOOK online dan nikmati berbagai olahraga favorit 
                 seperti sportsbook sepakbola, sportsbook basket, sportsbook tenis, sportsbook e-sports. 
-                <a href="https://tokosoon.site/register?ref=zrg2e2s">Bergabunglah sekarang</a> 
+                <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" target="_blank" rel="noopener noreferrer">Bergabunglah sekarang</a> 
                 dan nikmati sensasi taruhan olahraga di permainan SPORTSBOOK online yang menegangkan.
               </p>
             </section>
@@ -204,9 +221,9 @@ export default function Home() {
               <p className="body-lg">
                 <strong className="text-cyan">Kesimpulan:</strong> 
                 Jika cari <em>situs slot</em> dengan akses cepat dan bonus nyata, 
-                <a href="https://tokosoon.site/register?ref=zrg2e2s">TOKOGACOR</a> 
+                <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" target="_blank" rel="noopener noreferrer">TOKOGACOR</a> 
                 layak jadi tujuan utama. 
-                <a href="https://tokosoon.site/register?ref=zrg2e2s" className="font-semibold">Daftar sekarang</a> 
+                <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" target="_blank" rel="noopener noreferrer" className="font-semibold">Daftar sekarang</a> 
                 dan rasakan game mabar mantap hari ini.
               </p>
             </section>
@@ -247,7 +264,9 @@ export default function Home() {
           {["TOKOGACOR", "TOKO GACOR", "SLOT MAXWIN", "SITUS SLOT", "SLOT88"].map((t) => (
             <a
               key={t}
-              href="https://tokosoon.site/register?ref=zrg2e2s"
+              href="https://tokosoon.site/auth/register?ref=zrg2e2s"
+              target="_blank"
+              rel="noopener noreferrer"
               className="nav-pill px-5 py-3 text-sm"
             >
               {t}

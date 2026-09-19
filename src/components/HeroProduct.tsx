@@ -1,4 +1,6 @@
+"use client";
 import Link from "next/link";
+import Image from "next/image";
 import AngkaHoki from "@/components/AngkaHoki";
 
 export default function HeroProduct() {
@@ -17,9 +19,12 @@ export default function HeroProduct() {
           <div className="absolute -inset-4 bg-gradient-to-r from-cyan/20 to-purple/20 rounded-2xl blur-2xl opacity-50" aria-hidden="true" />
           <div className="relative card-elevated overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" aria-hidden="true" />
-            <img
+            <Image
               src="/tokogacor.gif"
               alt="TOKOGACOR - Platform game mabar mantap"
+              width={600}
+              height={400}
+              loading="lazy"
               className="w-full h-auto object-contain block transition-transform duration-500 group-hover:scale-[1.02]"
             />
             <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-cyan/10 backdrop-blur border border-cyan/30 text-cyan text-xs font-bold">
@@ -61,9 +66,9 @@ export default function HeroProduct() {
 
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <a
-              href="https://tokosoon.site/register?ref=zrg2e2s"
+              href="https://tokosoon.site/auth/register?ref=zrg2e2s"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="btn btn-primary w-full justify-center text-lg py-5 shadow-glow-cyan hover:shadow-glow-cyan-strong"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transition-transform group-hover:rotate-12" aria-hidden="true">
@@ -74,9 +79,9 @@ export default function HeroProduct() {
             </a>
 
             <a
-              href="https://tokosoon.site/register?ref=zrg2e2s"
+              href="https://tokosoon.site/auth/login?ref=zrg2e2s"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="btn btn-secondary w-full justify-center text-lg py-5 border-2 hover:bg-cyan/10"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transition-transform group-hover:translate-x-1" aria-hidden="true">

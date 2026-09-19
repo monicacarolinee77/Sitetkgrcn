@@ -1,17 +1,28 @@
 import Link from "next/link";
+import { generateGameRtp, formatRtp } from "@/lib/rtp-utils";
 
+// Expanded game data with more games per provider - all games now under TOKOGACOR brand
 const providers = [
   {
     name: "Pragmatic Play",
     slug: "pragmatic-play",
     logo: "🎰",
     games: [
-      { name: "Gates of Olympus", rtp: "96.50%", volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Tumble"] },
-      { name: "Sweet Bonanza", rtp: "96.48%", volatility: "Sedang", maxWin: "21.100x", features: ["Free Spins", "Multiplier", "Tumble", "Ante Bet"] },
-      { name: "Starlight Princess", rtp: "96.50%", volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Tumble", "Ante Bet"] },
-      { name: "Aztec Gems", rtp: "96.52%", volatility: "Rendah", maxWin: "1.000x", features: ["Multiplier Reel", "Respin", "Jackpot"] },
-      { name: "The Dog House Megaways", rtp: "96.55%", volatility: "Tinggi", maxWin: "12.305x", features: ["Megaways", "Sticky Wilds", "Free Spins"] },
-      { name: "Big Bass Bonanza", rtp: "96.71%", volatility: "Sedang", maxWin: "2.100x", features: ["Free Spins", "Money Symbol", "Dynamic Multiplier"] },
+      { name: "Gates of Olympus", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Tumble"] },
+      { name: "Sweet Bonanza", baseRtp: 96.48, variance: 0.35, volatility: "Sedang", maxWin: "21.100x", features: ["Free Spins", "Multiplier", "Tumble", "Ante Bet"] },
+      { name: "Starlight Princess", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Tumble", "Ante Bet"] },
+      { name: "Aztec Gems", baseRtp: 96.52, variance: 0.20, volatility: "Rendah", maxWin: "1.000x", features: ["Multiplier Reel", "Respin", "Jackpot"] },
+      { name: "The Dog House Megaways", baseRtp: 96.55, variance: 0.35, volatility: "Tinggi", maxWin: "12.305x", features: ["Megaways", "Sticky Wilds", "Free Spins"] },
+      { name: "Big Bass Bonanza", baseRtp: 96.71, variance: 0.25, volatility: "Sedang", maxWin: "2.100x", features: ["Free Spins", "Money Symbol", "Dynamic Multiplier"] },
+      { name: "Great Rhino Megaways", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "10.000x", features: ["Megaways", "Free Spins", "Multiplier", "Wilds"] },
+      { name: "5 Lions Gold", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "2.500x", features: ["Free Spins", "Multiplier", "Wilds", "Respin"] },
+      { name: "Power of Thor", baseRtp: 96.50, variance: 0.35, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Expanding Symbols"] },
+      { name: "Madame Destiny", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Scatter"] },
+      { name: "The Hand of Midas", baseRtp: 96.50, variance: 0.25, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Collect"] },
+      { name: "Empty the Bank", baseRtp: 96.50, variance: 0.20, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Money Symbols", "Multiplier"] },
+      { name: "John Hunter Tomb of the Scarab Queen", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Expanding Symbols", "Wilds"] },
+      { name: "Great Chicken Escape", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Multiplier", "Bonus Wheel"] },
+      { name: "Fire Strike", baseRtp: 96.50, variance: 0.35, volatility: "Tinggi", maxWin: "10.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
     ],
   },
   {
@@ -19,12 +30,21 @@ const providers = [
     slug: "pg-soft",
     logo: "🎮",
     games: [
-      { name: "Mahjong Ways 2", rtp: "96.95%", volatility: "Sedang", maxWin: "100.000x", features: ["Free Spins", "Multiplier", "Cascade", "Wild Transformation"] },
-      { name: "Fortune Tiger", rtp: "96.81%", volatility: "Sedang", maxWin: "2.500x", features: ["Respin", "Multiplier x10", "Full Screen Bonus"] },
-      { name: "Wild Bandito", rtp: "96.73%", volatility: "Tinggi", maxWin: "25.000x", features: ["Free Spins", "Expanding Wild", "Multiplier", "Gold Framed Symbols"] },
-      { name: "Lucky Neko", rtp: "96.73%", volatility: "Sedang", maxWin: "5.000x", features: ["Gigablox", "Free Spins", "Multiplier", "Lucky Cat"] },
-      { name: "Caishen Wins", rtp: "96.92%", volatility: "Sedang", maxWin: "100.000x", features: ["Free Spins", "Multiplier", "Wild on the Way", "Cascade"] },
-      { name: "Dragon Hatch 2", rtp: "96.76%", volatility: "Tinggi", maxWin: "15.000x", features: ["Cascade", "Dragon Features", "Free Spins", "Earth/Fire/Water/Wind Dragons"] },
+      { name: "Mahjong Ways 2", baseRtp: 96.95, variance: 0.25, volatility: "Sedang", maxWin: "100.000x", features: ["Free Spins", "Multiplier", "Cascade", "Wild Transformation"] },
+      { name: "Fortune Tiger", baseRtp: 96.81, variance: 0.20, volatility: "Sedang", maxWin: "2.500x", features: ["Respin", "Multiplier x10", "Full Screen Bonus"] },
+      { name: "Wild Bandito", baseRtp: 96.73, variance: 0.30, volatility: "Tinggi", maxWin: "25.000x", features: ["Free Spins", "Expanding Wild", "Multiplier", "Gold Framed Symbols"] },
+      { name: "Lucky Neko", baseRtp: 96.73, variance: 0.25, volatility: "Sedang", maxWin: "5.000x", features: ["Gigablox", "Free Spins", "Multiplier", "Lucky Cat"] },
+      { name: "Caishen Wins", baseRtp: 96.92, variance: 0.20, volatility: "Sedang", maxWin: "100.000x", features: ["Free Spins", "Multiplier", "Wild on the Way", "Cascade"] },
+      { name: "Dragon Hatch 2", baseRtp: 96.76, variance: 0.30, volatility: "Tinggi", maxWin: "15.000x", features: ["Cascade", "Dragon Features", "Free Spins", "Earth/Fire/Water/Wind Dragons"] },
+      { name: "Ganesha Fortune", baseRtp: 96.73, variance: 0.25, volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Leprechaun Riches", baseRtp: 96.73, variance: 0.20, volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Respin"] },
+      { name: "Fortune Gods", baseRtp: 96.81, variance: 0.25, volatility: "Sedang", maxWin: "2.500x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Phoenix Rises", baseRtp: 96.76, variance: 0.30, volatility: "Tinggi", maxWin: "10.000x", features: ["Free Spins", "Multiplier", "Expanding Symbols"] },
+      { name: "Medusa II", baseRtp: 96.73, variance: 0.25, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Tree of Fortune", baseRtp: 96.81, variance: 0.20, volatility: "Sedang", maxWin: "2.500x", features: ["Free Spins", "Multiplier", "Wilds", "Respin"] },
+      { name: "Prosperity Lion", baseRtp: 96.76, variance: 0.25, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Gem Saviour", baseRtp: 96.73, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Expanding Symbols"] },
+      { name: "Santa’s Gift Rush", baseRtp: 96.81, variance: 0.20, volatility: "Sedang", maxWin: "2.500x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
     ],
   },
   {
@@ -32,12 +52,21 @@ const providers = [
     slug: "microgaming",
     logo: "🎯",
     games: [
-      { name: "Mega Moolah", rtp: "88.12%", volatility: "Rendah", maxWin: "Progressive Jackpot", features: ["4 Progressive Jackpots", "Free Spins", "Wild Multiplier 2x", "Wheel Bonus"] },
-      { name: "Immortal Romance", rtp: "96.86%", volatility: "Tinggi", maxWin: "12.150x", features: ["Chamber of Spins", "Wild Desire", "4 Free Spin Modes", "Vampire Theme"] },
-      { name: "Thunderstruck II", rtp: "96.65%", volatility: "Sedang", maxWin: "8.100x", features: ["Great Hall of Spins", "Wildstorm", "4 Free Spin Modes", "Norse Mythology"] },
-      { name: "Book of Oz", rtp: "96.50%", volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Expanding Symbol", "Respins", "Wizard Theme"] },
-      { name: "9 Masks of Fire", rtp: "96.24%", volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Mask Collection", "Jackpot Wheel", "African Theme"] },
-      { name: "Break da Bank Again", rtp: "95.43%", volatility: "Tinggi", maxWin: "3.750x", features: ["Free Spins", "Multiplier 5x", "Vault Feature", "Bank Theme"] },
+      { name: "Mega Moolah", baseRtp: 88.12, variance: 0.50, volatility: "Rendah", maxWin: "Progressive Jackpot", features: ["4 Progressive Jackpots", "Free Spins", "Wild Multiplier 2x", "Wheel Bonus"] },
+      { name: "Immortal Romance", baseRtp: 96.86, variance: 0.30, volatility: "Tinggi", maxWin: "12.150x", features: ["Chamber of Spins", "Wild Desire", "4 Free Spin Modes", "Vampire Theme"] },
+      { name: "Thunderstruck II", baseRtp: 96.65, variance: 0.25, volatility: "Sedang", maxWin: "8.100x", features: ["Great Hall of Spins", "Wildstorm", "4 Free Spin Modes", "Norse Mythology"] },
+      { name: "Book of Oz", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Expanding Symbol", "Respins", "Wizard Theme"] },
+      { name: "9 Masks of Fire", baseRtp: 96.24, variance: 0.25, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Mask Collection", "Jackpot Wheel", "African Theme"] },
+      { name: "Break da Bank Again", baseRtp: 95.43, variance: 0.35, volatility: "Tinggi", maxWin: "3.750x", features: ["Free Spins", "Multiplier 5x", "Vault Feature", "Bank Theme"] },
+      { name: "Jurassic Park", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Terminator 2", baseRtp: 96.50, variance: 0.35, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Avalon", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Cash Splash", baseRtp: 96.50, variance: 0.20, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Lucky Twins", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "King Cashalot", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Major Millions", baseRtp: 96.50, variance: 0.35, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Fruit Fiesta", baseRtp: 96.50, variance: 0.20, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Cool Buck", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
     ],
   },
   {
@@ -45,12 +74,20 @@ const providers = [
     slug: "playtech",
     logo: "🏛️",
     games: [
-      { name: "Age of the Gods", rtp: "95.02%", volatility: "Sedang", maxWin: "Progressive Jackpot", features: ["4 Progressive Jackpots", "Free Spins", "Multiplier", "Greek Mythology"] },
-      { name: "Buffalo Blitz", rtp: "95.96%", volatility: "Tinggi", maxWin: "10.000x", features: ["4096 Ways", "Free Spins", "Wild Multiplier 2x/3x/5x", "Buffalo Theme"] },
-      { name: "Gladiator Jackpot", rtp: "91.46%", volatility: "Sedang", maxWin: "Progressive Jackpot", features: ["Progressive Jackpot", "Free Spins", "Colosseum Bonus", "Movie Theme"] },
-      { name: "Great Blue", rtp: "96.03%", volatility: "Tinggi", maxWin: "10.000x", features: ["Free Spins", "Multiplier up to 15x", "Retrigger", "Ocean Theme"] },
-      { name: "Kingdoms Rise", rtp: "96.47%", volatility: "Sedang", maxWin: "Progressive Jackpot", features: ["3 Progressive Jackpots", "Token System", "Shop Feature", "Fantasy Theme"] },
-      { name: "White King", rtp: "90.05%", volatility: "Tinggi", maxWin: "1.000x", features: ["Free Spins", "Stacked Wilds", "Major/Minor Jackpot", "Lion Theme"] },
+      { name: "Age of the Gods", baseRtp: 95.02, variance: 0.40, volatility: "Sedang", maxWin: "Progressive Jackpot", features: ["4 Progressive Jackpots", "Free Spins", "Multiplier", "Greek Mythology"] },
+      { name: "Buffalo Blitz", baseRtp: 95.96, variance: 0.35, volatility: "Tinggi", maxWin: "10.000x", features: ["4096 Ways", "Free Spins", "Wild Multiplier 2x/3x/5x", "Buffalo Theme"] },
+      { name: "Gladiator Jackpot", baseRtp: 91.46, variance: 0.50, volatility: "Sedang", maxWin: "Progressive Jackpot", features: ["Progressive Jackpot", "Free Spins", "Colosseum Bonus", "Movie Theme"] },
+      { name: "Great Blue", baseRtp: 96.03, variance: 0.30, volatility: "Tinggi", maxWin: "10.000x", features: ["Free Spins", "Multiplier up to 15x", "Retrigger", "Ocean Theme"] },
+      { name: "Kingdoms Rise", baseRtp: 96.47, variance: 0.25, volatility: "Sedang", maxWin: "Progressive Jackpot", features: ["3 Progressive Jackpots", "Token System", "Shop Feature", "Fantasy Theme"] },
+      { name: "White King", baseRtp: 90.05, variance: 0.40, volatility: "Tinggi", maxWin: "1.000x", features: ["Free Spins", "Stacked Wilds", "Major/Minor Jackpot", "Lion Theme"] },
+      { name: "Carnival of Mystery", baseRtp: 96.03, variance: 0.35, volatility: "Tinggi", maxWin: "10.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "The Dark Knight", baseRtp: 96.03, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Green Lantern", baseRtp: 96.03, variance: 0.25, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "The Flash", baseRtp: 96.03, variance: 0.35, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Superman", baseRtp: 96.03, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Batman", baseRtp: 96.03, variance: 0.25, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Wonder Woman", baseRtp: 96.03, variance: 0.35, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Aquaman", baseRtp: 96.03, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
     ],
   },
   {
@@ -58,12 +95,15 @@ const providers = [
     slug: "jili",
     logo: "🎲",
     games: [
-      { name: "Super Ace", rtp: "97.00%", volatility: "Sedang", maxWin: "10.000x", features: ["Cascade", "Golden Card", "Free Spins", "Multiplier up to 10x"] },
-      { name: "Golden Empire", rtp: "96.50%", volatility: "Tinggi", maxWin: "20.000x", features: ["Megaways", "Cascade", "Free Spins", "Multiplier", "Golden Frame"] },
-      { name: "Money Coming", rtp: "97.00%", volatility: "Rendah", maxWin: "10.000x", features: ["Respin", "Multiplier", "Special Reel", "Coin Collection"] },
-      { name: "Boxing King", rtp: "96.50%", volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Combo Multiplier", "Wild Expansion", "Boxing Theme"] },
-      { name: "Charge Buffalo", rtp: "96.50%", volatility: "Tinggi", maxWin: "10.000x", features: ["Free Spins", "Multiplier", "Buffalo Stampede", "Wild Stack"] },
-      { name: "Roma X", rtp: "96.50%", volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Gladiator Battle", "Multiplier", "Roman Theme"] },
+      { name: "Super Ace", baseRtp: 97.00, variance: 0.20, volatility: "Sedang", maxWin: "10.000x", features: ["Cascade", "Golden Card", "Free Spins", "Multiplier up to 10x"] },
+      { name: "Golden Empire", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "20.000x", features: ["Megaways", "Cascade", "Free Spins", "Multiplier", "Golden Frame"] },
+      { name: "Money Coming", baseRtp: 97.00, variance: 0.15, volatility: "Rendah", maxWin: "10.000x", features: ["Respin", "Multiplier", "Special Reel", "Coin Collection"] },
+      { name: "Boxing King", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Combo Multiplier", "Wild Expansion", "Boxing Theme"] },
+      { name: "Charge Buffalo", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "10.000x", features: ["Free Spins", "Multiplier", "Buffalo Stampede", "Wild Stack"] },
+      { name: "Roma X", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Gladiator Battle", "Multiplier", "Roman Theme"] },
+      { name: "Lucky Box", baseRtp: 96.50, variance: 0.20, volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Treasure Bowl", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "10.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Fa Fa Fa", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
     ],
   },
   {
@@ -71,12 +111,18 @@ const providers = [
     slug: "habanero",
     logo: "🌶️",
     games: [
-      { name: "Hot Hot Fruit", rtp: "96.74%", volatility: "Sedang", maxWin: "1.000x", features: ["Hot Hot Feature", "Respin", "Stacked Symbols", "Classic Fruit Theme"] },
-      { name: "Fa Cai Shen", rtp: "96.50%", volatility: "Sedang", maxWin: "888x", features: ["Free Spins", "Fa Cai Shen Feature", "Red Envelope", "Chinese Theme"] },
-      { name: "5 Mariachis", rtp: "96.50%", volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Wild Multiplier", "Mariachi Feature", "Mexican Theme"] },
-      { name: "London Hunter", rtp: "96.50%", volatility: "Tinggi", maxWin: "3.000x", features: ["Free Spins", "Expanding Wild", "Hunter Bonus", "Steampunk Theme"] },
-      { name: "Koi Gate", rtp: "96.50%", volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Koi Wild", "Expanding Symbol", "Japanese Theme"] },
-      { name: "Presto!", rtp: "96.50%", volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Magic Wild", "Multiplier", "Magic Theme"] },
+      { name: "Hot Hot Fruit", baseRtp: 96.74, variance: 0.20, volatility: "Sedang", maxWin: "1.000x", features: ["Hot Hot Feature", "Respin", "Stacked Symbols", "Classic Fruit Theme"] },
+      { name: "Fa Cai Shen", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "888x", features: ["Free Spins", "Fa Cai Shen Feature", "Red Envelope", "Chinese Theme"] },
+      { name: "5 Mariachis", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Wild Multiplier", "Mariachi Feature", "Mexican Theme"] },
+      { name: "London Hunter", baseRtp: 96.50, variance: 0.35, volatility: "Tinggi", maxWin: "3.000x", features: ["Free Spins", "Expanding Wild", "Hunter Bonus", "Steampunk Theme"] },
+      { name: "Koi Gate", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Koi Wild", "Expanding Symbol", "Japanese Theme"] },
+      { name: "Presto!", baseRtp: 96.50, variance: 0.20, volatility: "Sedang", maxWin: "2.000x", features: ["Free Spins", "Magic Wild", "Multiplier", "Magic Theme"] },
+      { name: "Cake Valley", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Lucky Lucky", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Colossal Gems", baseRtp: 96.50, variance: 0.35, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Naughty Santa", baseRtp: 96.50, variance: 0.30, volatility: "Tinggi", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Wizard Shop", baseRtp: 96.50, variance: 0.25, volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
+      { name: "Lucky Fortune Cat", baseRtp: 96.50, variance: 0.20, volatility: "Sedang", maxWin: "5.000x", features: ["Free Spins", "Multiplier", "Wilds", "Scatter"] },
     ],
   },
 ];
@@ -107,6 +153,12 @@ export const metadata = {
     "Habanero RTP",
     "slot gacor RTP",
     "RTP live 2026",
+    "tokogacor resmi",
+    "tokogacor official",
+    "tokogacor slot",
+    "tokogacor web",
+    "tokogacor deposit",
+    "tokogacor withdraw",
   ],
   openGraph: {
     title: "RTP Slot Tertinggi 2026 | Rekomendasi Game 6 Provider Terpopuler",
@@ -129,7 +181,17 @@ export const metadata = {
   },
 };
 
+// Generate dynamic RTP values based on time window (server-side)
+const providerRtps = providers.map(provider => ({
+  ...provider,
+  games: provider.games.map((game, index) => ({
+    ...game,
+    rtp: formatRtp(generateGameRtp(game, index + 1))
+  }))
+}));
+
 export default function RTPPage() {
+
   return (
     <main className="flex-1 flex flex-col">
       {/* JSON-LD Structured Data */}
@@ -165,7 +227,7 @@ export default function RTPPage() {
       {/* Provider Sections */}
       <section className="container-main py-8 lg:py-12 anim-fade-up">
         <div className="space-y-16">
-          {providers.map((provider, pIdx) => (
+          {providerRtps.map((provider, pIdx) => (
             <article key={provider.slug} id={provider.slug} className="anim-slide-up" style={{ animationDelay: `${pIdx * 100}ms` }}>
               {/* Provider Header */}
               <header className="mb-8 pb-4 border-b border-border/30">
@@ -237,17 +299,17 @@ export default function RTPPage() {
                     </div>
 
                     {/* CTA */}
-                    <Link
-                      href="https://tokosoon.site/register?ref=zrg2e2s"
+                    <a
+                      href="https://tokosoon.site/auth/register?ref=zrg2e2s"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="btn btn-primary w-full justify-center py-3 text-sm group-hover:shadow-glow-cyan transition-shadow"
                     >
                       Mainkan {game.name}
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
-                    </Link>
+                    </a>
                   </div>
                 ))}
               </div>
@@ -271,7 +333,7 @@ export default function RTPPage() {
               </tr>
             </thead>
             <tbody>
-              {providers.map((provider) => {
+              {providerRtps.map((provider) => {
                 const topGame = provider.games.reduce((max, game) => {
                   const rtp = parseFloat(game.rtp.replace("%", ""));
                   const maxRtp = parseFloat(max.rtp.replace("%", ""));
@@ -337,7 +399,7 @@ export default function RTPPage() {
               Daftar di TOKOGACOR resmi, deposit minimal Rp 10.000, dan mainkan game dengan RTP tertinggi dari 6 provider terpopuler.
             </p>
             <Link
-              href="https://tokosoon.site/register?ref=zrg2e2s"
+              href="https://tokosoon.site/auth/register?ref=zrg2e2s"
               target="_blank"
               rel="noreferrer"
               className="btn btn-primary text-lg px-10 py-4 shadow-glow-cyan hover:shadow-glow-cyan-strong inline-flex items-center gap-2"
@@ -348,6 +410,170 @@ export default function RTPPage() {
               </svg>
               DAFTAR & MAIN SEKARANG
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="container-main py-12 lg:py-16 anim-fade-up">
+        <h2 className="heading-lg text-cyan text-center mb-10">FAQ Seputar Rtp Slot Online</h2>
+
+        <div className="max-w-4xl mx-auto space-y-6">
+          {/* FAQ Item 1 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-colors">
+            <h3 className="heading-sm text-cyan mb-3 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-full bg-cyan/20 text-cyan flex items-center justify-center text-sm font-bold">1</span>
+              Apa itu RTP?
+            </h3>
+            <p className="text-foreground/80 leading-relaxed pl-10">
+              RTP adalah singkatan dari Return to Player, yaitu persentase teoritis yang menunjukkan rata-rata nilai taruhan yang dapat dikembalikan kepada pemain dalam jangka panjang. Contohnya, RTP 96% berarti secara teori sekitar Rp96 dari setiap Rp100 taruhan dikembalikan dalam periode yang sangat panjang. Nilai RTP bukan jaminan kemenangan atau hasil pada setiap sesi permainan.
+            </p>
+          </div>
+
+          {/* FAQ Item 2 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-colors">
+            <h3 className="heading-sm text-cyan mb-3 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-full bg-cyan/20 text-cyan flex items-center justify-center text-sm font-bold">2</span>
+              Bagaimana cara melihat informasi RTP?
+            </h3>
+            <p className="text-foreground/80 leading-relaxed pl-10">
+              Informasi RTP biasanya dapat dilihat melalui detail permainan, paytable, atau sumber informasi resmi dari provider game. Beberapa platform juga menampilkan persentase RTP berdasarkan judul permainan sehingga lebih mudah untuk membandingkan nilai RTP sebelum memilih game.
+            </p>
+          </div>
+
+          {/* FAQ Item 3 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-colors">
+            <h3 className="heading-sm text-cyan mb-3 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-full bg-cyan/20 text-cyan flex items-center justify-center text-sm font-bold">3</span>
+              Apakah RTP tinggi berarti pasti menang?
+            </h3>
+            <p className="text-foreground/80 leading-relaxed pl-10">
+              Tidak. RTP tinggi tidak menjamin kemenangan pada setiap permainan atau putaran. RTP merupakan persentase teoritis yang dihitung dalam jangka panjang, sedangkan hasil setiap putaran tetap dipengaruhi oleh mekanisme acak dalam game. Jadi, RTP sebaiknya dipahami sebagai informasi statistik, bukan jaminan keuntungan.
+            </p>
+          </div>
+
+          {/* FAQ Item 4 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-colors">
+            <h3 className="heading-sm text-cyan mb-3 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-full bg-cyan/20 text-cyan flex items-center justify-center text-sm font-bold">4</span>
+              Berapa RTP yang dianggap tinggi?
+            </h3>
+            <p className="text-foreground/80 leading-relaxed pl-10">
+              Secara umum, RTP sekitar 96% atau lebih sering dianggap sebagai persentase pengembalian teoritis yang cukup tinggi. Meski demikian, nilai RTP tidak menjamin hasil tertentu dalam setiap putaran karena hasil permainan tetap bersifat acak. RTP sebaiknya digunakan sebagai salah satu informasi untuk memahami karakteristik sebuah game.
+            </p>
+          </div>
+
+          {/* FAQ Item 5 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-colors">
+            <h3 className="heading-sm text-cyan mb-3 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-full bg-cyan/20 text-cyan flex items-center justify-center text-sm font-bold">5</span>
+              Apakah RTP menjamin permainan yang adil?
+            </h3>
+            <p className="text-foreground/80 leading-relaxed pl-10">
+              RTP menunjukkan persentase pengembalian teoritis dari suatu permainan dan tidak menjadi jaminan bahwa setiap hasil akan menguntungkan pemain. Game yang menggunakan RNG dirancang untuk menghasilkan setiap putaran secara acak. Karena itu, RTP lebih tepat digunakan sebagai informasi statistik mengenai karakteristik game, sementara hasil setiap permainan tetap tidak dapat dipastikan.
+            </p>
+          </div>
+
+          {/* FAQ Item 6 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-colors">
+            <h3 className="heading-sm text-cyan mb-3 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-full bg-cyan/20 text-cyan flex items-center justify-center text-sm font-bold">6</span>
+              Bagaimana cara memahami informasi RTP?
+            </h3>
+            <p className="text-foreground/80 leading-relaxed pl-10">
+              Informasi RTP menunjukkan persentase pengembalian teoritis sebuah game dalam jangka panjang. Nilai RTP yang lebih tinggi berarti persentase pengembalian teoritisnya lebih besar, tetapi tidak dapat digunakan untuk memprediksi hasil putaran berikutnya. Untuk memahami game dengan lebih baik, perhatikan juga informasi resmi dan tingkat volatilitas yang tersedia.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* User Testimonials */}
+      <section className="container-main py-12 lg:py-16 anim-fade-up">
+        <h2 className="heading-lg text-cyan text-center mb-10">Apa Kata Member Tentang Informasi RTP Slot</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {/* Testimonial 1 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-all duration-300">
+            <div className="flex items-center gap-1 mb-4">
+              <span className="text-yellow-400 text-xl">★★★★★</span>
+            </div>
+            <p className="text-foreground/80 mb-4 leading-relaxed">
+              &quot;Saya baru mulai belajar tentang rtp setelah membaca beberapa penjelasan di sini. Sekarang saya lebih tahu fungsi persentasenya dan ga langsung menganggap angka RTP sebagai hasil yang pasti .&quot;
+            </p>
+            <div className="border-t border-border/30 pt-4">
+              <p className="font-semibold text-cyan">Bagas, Surabaya</p>
+              <p className="text-xs text-foreground/60">2026-07-15</p>
+            </div>
+          </div>
+          
+          {/* Testimonial 2 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-all duration-300">
+            <div className="flex items-center gap-1 mb-4">
+              <span className="text-yellow-400 text-xl">★★★★★</span>
+            </div>
+            <p className="text-foreground/80 mb-4 leading-relaxed">
+              &quot;Yang saya suka dari informasi rtp slot ini adalah tampilannya sederhana dan gampang dipahami. Saya biasanya lihat persentase rtp dulu, lalu mempertimbangkan volatilitas dan fitur game sebelum menentukan pilihan.&quot;
+            </p>
+            <div className="border-t border-border/30 pt-4">
+              <p className="font-semibold text-cyan">Yoga, Bandung</p>
+              <p className="text-xs text-foreground/60">2026-07-17</p>
+            </div>
+          </div>
+          
+          {/* Testimonial 3 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-all duration-300">
+            <div className="flex items-center gap-1 mb-4">
+              <span className="text-yellow-400 text-xl">★★★★☆</span>
+            </div>
+            <p className="text-foreground/80 mb-4 leading-relaxed">
+              &quot;Dulu saya pikir angka RTP yang besar berarti kesempatan untuk menangnya lebih tinggi. Setelah membaca penjelasannya, saya jadi paham kalo rtp merupakan perhitungan teoritis untuk jangka panjang.&quot;
+            </p>
+            <div className="border-t border-border/30 pt-4">
+              <p className="font-semibold text-cyan">Rian, Semarang</p>
+              <p className="text-xs text-foreground/60">2026-07-19</p>
+            </div>
+          </div>
+          
+          {/* Testimonial 4 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-all duration-300">
+            <div className="flex items-center gap-1 mb-4">
+              <span className="text-yellow-400 text-xl">★★★★★</span>
+            </div>
+            <p className="text-foreground/80 mb-4 leading-relaxed">
+              &quot;Saya biasanya baca rtp dulu supaya punya gambaran tentang karakter game. Setelah itu baru melihat paytable, fitur bonus, dan volatilitasnya biar informasinya ga cuma dari satu parameter.&quot;
+            </p>
+            <div className="border-t border-border/30 pt-4">
+              <p className="font-semibold text-cyan">Adit, Yogyakarta</p>
+              <p className="text-xs text-foreground/60">2026-07-21</p>
+            </div>
+          </div>
+          
+          {/* Testimonial 5 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-all duration-300">
+            <div className="flex items-center gap-1 mb-4">
+              <span className="text-yellow-400 text-xl">★★★★★</span>
+            </div>
+            <p className="text-foreground/80 mb-4 leading-relaxed">
+              &quot;Penjelasan tentang rtp menurut saya cukup membantu untuk memahami cara kerja persentase pengembalian. Saya jadi lebih mengerti kalo hasil setiap spin tetap acak dan angka RTP bukan ramalan untuk putaran selanjutnya.&quot;
+            </p>
+            <div className="border-t border-border/30 pt-4">
+              <p className="font-semibold text-cyan">Rafi, Medan</p>
+              <p className="text-xs text-foreground/60">2026-07-23</p>
+            </div>
+          </div>
+          
+          {/* Testimonial 6 */}
+          <div className="card p-6 border-border/50 hover:border-cyan/30 transition-all duration-300">
+            <div className="flex items-center gap-1 mb-4">
+              <span className="text-yellow-400 text-xl">★★★★★</span>
+            </div>
+            <p className="text-foreground/80 mb-4 leading-relaxed">
+              &quot;Yang paling berguna buat saya adalah bisa liat rtp sebagai bahan informasi sebelum memilih game. Saya juga memperhatikan aturan pembayaran dan volatilitas supaya lebih memahami perbedaan setiap permainan.&quot;
+            </p>
+            <div className="border-t border-border/30 pt-4">
+              <p className="font-semibold text-cyan">Iqbal, Jakarta</p>
+              <p className="text-xs text-foreground/60">2026-07-23</p>
+            </div>
           </div>
         </div>
       </section>

@@ -1,11 +1,11 @@
 ﻿"use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [searchFocused, setSearchFocused] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -45,14 +45,14 @@ export default function Header() {
         <div className="flex h-[72px] items-center justify-between gap-4 lg:gap-6">
           {/* Logo & Brand */}
           <Link href="/" className="flex items-center gap-3 group flex-shrink-0" aria-label="TOKOGACOR Home">
-            <div className="relative">
-              <img
-                src="https://cdn.databerjalan.com/cdn-cgi/image/width=auto,quality=75,fit=contain,format=auto/assets/images/store/2022-10-14T13:33:13.303Z_LOGO_PNG_1.png"
-                alt="TOKOGACOR"
-                className="h-10 w-auto object-contain transition-all duration-300 group-hover:scale-[1.05] drop-shadow-[0_0_12px_rgba(0,229,255,0.3)]"
-              />
-              <div className="absolute -inset-1 bg-cyan/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </div>
+            <Image
+              src="https://cdn.databerjalan.com/cdn-cgi/image/width=auto,quality=75,fit=contain,format=auto/assets/images/store/2022-10-14T13:33:13.303Z_LOGO_PNG_1.png"
+              alt="TOKOGACOR"
+              width={40}
+              height={40}
+              unoptimized
+              className="h-10 w-auto object-contain transition-all duration-300 group-hover:scale-[1.05] drop-shadow-[0_0_12px_rgba(0,229,255,0.3)]"
+            />
           </Link>
 
           {/* Search - Desktop */}
@@ -60,8 +60,8 @@ export default function Header() {
             <div
               ref={searchWrapperRef}
               className="relative w-full group search-wrapper"
-              onMouseEnter={() => setSearchFocused(true)}
-              onMouseLeave={() => setSearchFocused(false)}
+              onMouseEnter={() => setShowSuggestions(true)}
+              onMouseLeave={() => setShowSuggestions(false)}
             >
               <svg className="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <circle cx="11" cy="11" r="7" />
@@ -71,8 +71,8 @@ export default function Header() {
                 type="text"
                 placeholder="Cari di Google 'TOKOGACOR'"
                 className="search-input"
-                onFocus={() => { setSearchFocused(true); setShowSuggestions(true); }}
-                onBlur={() => { setSearchFocused(false); setTimeout(() => setShowSuggestions(false), 200); }}
+                onFocus={() => { setShowSuggestions(true); }}
+                onBlur={() => { setTimeout(() => setShowSuggestions(false), 200); }}
                 aria-label="Search"
                 aria-autocomplete="list"
                 aria-controls="search-suggestions"
@@ -91,12 +91,12 @@ export default function Header() {
                   </div>
                   <ul className="py-1 max-h-60 overflow-y-auto" role="listbox">
                     {searchSuggestions.map((suggestion, idx) => (
-                      <li key={idx} role="option">
+                      <li key={idx} role="option" aria-selected={false}>
                         <button
                           type="button"
                           className="w-full px-4 py-2.5 text-left text-sm text-foreground/80 hover:bg-cyan/5 hover:text-cyan transition-colors duration-150 flex items-center gap-3"
                           onClick={() => {
-                            window.open("https://tokosoon.site/auth/register?ref=zrg2e2s", '_blank');
+                            window.open(`https://tokosoon.site/search?q=${encodeURIComponent(suggestion)}`, '_blank');
                           }}
                         >
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-cyan/50 flex-shrink-0" aria-hidden="true">
@@ -142,7 +142,7 @@ export default function Header() {
               DAFTAR
             </a>
             <a
-              href="https://tokosoon.site/auth/register?ref=zrg2e2s"
+              href="https://tokosoon.site/auth/login?ref=zrg2e2s"
               target="_blank"
               rel="noreferrer"
               className="btn btn-md btn-primary"
@@ -183,14 +183,14 @@ export default function Header() {
               { l: "SITUS SLOT", active: false },
               { l: "SLOT MAXWIN", active: false },
             ].map(({ l, active }) => (
-              <a
+              <Link
                 key={l}
-                href="https://tokosoon.site/auth/register?ref=zrg2e2s"
+                href="/rtp"
                 className={"nav-pill shrink-0 px-4 py-1.5 text-sm " + (active ? "nav-pill-active" : "")}
                 aria-current={active ? "page" : undefined}
               >
                 {l}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -218,12 +218,16 @@ export default function Header() {
             <div className="grid grid-cols-1 gap-3 pt-2">
               <a
                 href="https://tokosoon.site/auth/register?ref=zrg2e2s"
+                target="_blank"
+                rel="noreferrer"
                 className="btn btn-lg btn-primary w-full"
               >
                 DAFTAR AKUN
               </a>
               <a
-                href="https://tokosoon.site/auth/register?ref=zrg2e2s"
+                href="https://tokosoon.site/auth/login?ref=zrg2e2s"
+                target="_blank"
+                rel="noreferrer"
                 className="btn btn-lg btn-secondary w-full"
               >
                 LOGIN
@@ -232,10 +236,10 @@ export default function Header() {
             
             {/* Mobile Navigation */}
             <div className="flex flex-wrap gap-2 pt-2">
-              <Link href="/t-shirts" className="nav-pill nav-pill-active text-xs">Shop All</Link>
-              <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" className="nav-pill text-xs">TOKOGACOR</a>
-              <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" className="nav-pill text-xs">SITUS SLOT</a>
-              <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" className="nav-pill text-xs">SLOT MAXWIN</a>
+              <Link href="/t-shirts" className="nav-pill text-xs">Shop All</Link>
+              <Link href="/rtp" className="nav-pill text-xs">TOKOGACOR</Link>
+              <Link href="/t-shirts" className="nav-pill text-xs">SITUS SLOT</Link>
+              <Link href="/t-shirts" className="nav-pill text-xs">SLOT MAXWIN</Link>
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@
 import { useState } from "react";
 const faqs = [
   { q:"Apa itu TOKOGACOR?", a:"Platform situs slot dengan konsep game mabar mantap — akses cepat via tokogacor.run, stabil di HP & desktop." },
-  { q:"Cara akses link resmi?", a:"Buka tokosoon.site/register?ref/=zrg2e2s, lalu login. Simpan di bookmark." },
+  { q:"Cara akses link resmi?", a:"Buka tokosoon.site/auth/register?ref=zrg2e2s, lalu login. Simpan di bookmark." },
   { q:"Apakah aman?", a:"Ya, keamanan berlapis dan enkripsi. Selalu pakai link resmi." },
   { q:"Minimal deposit?", a:"Rp 10.000 deposit, Rp 50.000 withdraw. Bank, E-Wallet & QRIS." },
 ];

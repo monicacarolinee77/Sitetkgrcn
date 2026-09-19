@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="relative mt-20 border-t border-border/50 bg-gradient-to-b from-background to-card/50 backdrop-blur-md">
@@ -8,14 +10,14 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="relative">
-                <img
+                <Image
                   src="https://cdn.databerjalan.com/cdn-cgi/image/width=auto,quality=75,fit=contain,format=auto/assets/images/store/2022-10-14T13:33:13.303Z_LOGO_PNG_1.png"
                   alt="TOKOGACOR"
+                  width={32}
+                  height={32}
+                  unoptimized
                   className="h-8 w-auto object-contain transition-transform duration-300 hover:scale-[1.05] drop-shadow-glow-cyan"
                 />
-                <div className="absolute -inset-2 bg-cyan/20 rounded-full blur-md opacity-0 hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
-              </div>
               <span className="eyebrow text-foreground/40">© 2026 TOKOGACOR</span>
             </div>
             <p className="body-sm text-foreground/60 leading-relaxed max-w-xs">
@@ -35,7 +37,7 @@ export default function Footer() {
                 { label: "Link Resmi", href: "https://tokosoon.site/auth/register?ref=zrg2e2s", icon: "🔗" },
                 { label: "Daftar Sekarang", href: "https://tokosoon.site/auth/register?ref=zrg2e2s", icon: "📝" },
                 { label: "FAQ", href: "#faq", icon: "❓" },
-                { label: "Tentang Kami", href: "#", icon: "ℹ️" },
+                { label: "Tentang Kami", href: "https://tokosoon.site/about", icon: "ℹ️" },
               ].map((link, idx) => (
                 <li key={idx}>
                   <a
@@ -84,17 +86,6 @@ export default function Footer() {
                 </svg>
                 <span>Livechat</span>
               </a>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-border/50" role="list" aria-label="Keamanan dan kepatuhan">
-              <div className="flex items-center gap-2 text-xs text-foreground/50" role="listitem">
-                <div className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse" aria-hidden="true" />
-                <span className="font-medium text-foreground/70">SSL Secured</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-foreground/50" role="listitem">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" style={{ animationDelay: "0.2s" }} aria-hidden="true" />
-                <span className="font-medium text-foreground/70">GDPR Compliant</span>
-              </div>
             </div>
           </div>
         </div>

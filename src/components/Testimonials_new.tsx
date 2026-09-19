@@ -58,7 +58,7 @@ export default function Testimonials() {
               </div>
 
               <blockquote className="body-sm text-foreground/70 leading-relaxed italic relative">
-                <span className="text-cyan/30 text-2xl font-bold leading-none absolute -top-2 -left-2" aria-hidden="true">"</span>
+                <span className="text-cyan/30 text-2xl font-bold leading-none absolute -top-2 -left-2" aria-hidden="true">&quot;</span>
                 {x.t}
               </blockquote>
 
