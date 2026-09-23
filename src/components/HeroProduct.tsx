@@ -15,7 +15,7 @@ export default function HeroProduct() {
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
         {/* Product Image - Left side on desktop */}
         <div className="relative anim-fade-up lg:sticky lg:top-24">
-          <div className="absolute -inset-4 bg-gradient-to-br from-gold/10 via-emerald/5 to-royal/10 rounded-2xl blur-2xl opacity-50" aria-hidden="true" />
+          <div className="absolute -inset-4 bg-gradient-to-br from-gold/10 via-emerald/5 to-royal/10 rounded-2xl blur-xl opacity-30" aria-hidden="true" />
           <div className="aspect-[2/3] relative overflow-hidden bg-bg-deep">
             <Image
               src="/posterathena168.png"
