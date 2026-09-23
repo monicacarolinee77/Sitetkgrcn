@@ -21,7 +21,7 @@ export default function HeroProduct() {
               src="/posterathena168.png"
               alt="Poster Athena168 - Platform Gaming Terpercaya 2026"
               fill
-              className="object-cover object-center"
+              className="object-contain object-center"
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
