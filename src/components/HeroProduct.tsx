@@ -42,28 +42,28 @@ export default function HeroProduct() {
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-gold via-emerald to-cyan" aria-hidden="true" />
           
           {/* Floating stats cards */}
-          <div className="absolute -bottom-6 left-6 right-6 lg:left-0 lg:right-auto lg:w-1/2 flex flex-col gap-3 anim-slide-up anim-delay-200">
-            <div className="card-felt p-4 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald/10 flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald" aria-hidden="true">
+          <div className="absolute -bottom-4 left-6 right-6 lg:left-0 lg:right-auto lg:w-1/2 flex flex-col gap-2 anim-slide-up anim-delay-200">
+            <div className="card-felt p-2.5 flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-emerald/10 flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald" aria-hidden="true">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
               </div>
               <div>
-                <p className="heading-sm text-emerald-light">96.8%</p>
+                <p className="text-base font-bold text-emerald-light">96.8%</p>
                 <p className="text-xs text-fg-muted">RTP Rata-rata</p>
               </div>
             </div>
-            <div className="card-velvet p-4 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-crimson/10 flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-crimson-light" aria-hidden="true">
+            <div className="card-velvet p-2.5 flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-crimson/10 flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-crimson-light" aria-hidden="true">
                   <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
                   <line x1="8" y1="21" x2="16" y2="21" />
                   <line x1="12" y1="17" x2="12" y2="21" />
                 </svg>
               </div>
               <div>
-                <p className="heading-sm text-crimson-light">&lt; 3 Menit</p>
+                <p className="text-base font-bold text-crimson-light">&lt; 3 Menit</p>
                 <p className="text-xs text-fg-muted">Proses Transaksi</p>
               </div>
             </div>
