@@ -10,6 +10,20 @@
 				"$tsc-watch"
 			],
 			"group": "build"
+		},
+		{
+			"label": "Verify keyword additions",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "Final verification",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": true,
+			"group": "build"
 		}
 	]
 }

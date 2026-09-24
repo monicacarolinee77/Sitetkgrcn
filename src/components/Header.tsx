@@ -27,14 +27,14 @@ export default function Header() {
 
   const menuIconClass = "transition-all duration-300 " + (open ? "rotate-90 text-gold" : "");
   const searchSuggestions = [
-    "game tips and strategies",
-    "best games to play",
-    "how to register",
-    "platform features",
-    "about athena168",
-    "payment methods",
-    "customer support",
-    "faq and help",
+    { label: "game tips and strategies", href: "/rtp" },
+    { label: "best games to play", href: "/rtp" },
+    { label: "how to register", href: "/#cara-daftar" },
+    { label: "platform features", href: "/#produk-kami" },
+    { label: "about athena168", href: "/#apa-itu" },
+    { label: "payment methods", href: "/#deposit" },
+    { label: "customer support", href: "https://tokosoon.site/help-center" },
+    { label: "faq and help", href: "/#faq" },
   ];
 
   return (
@@ -102,8 +102,8 @@ export default function Header() {
             <Link href="/" className="nav-pill px-4 py-2">Beranda</Link>
             <Link href="/rtp" className="nav-pill px-4 py-2">RTP Slot</Link>
             <Link href="/t-shirts" className="nav-pill px-4 py-2">Merchandise</Link>
-            <Link href="#produk" className="nav-pill px-4 py-2">Produk</Link>
-            <Link href="#faq" className="nav-pill px-4 py-2">FAQ</Link>
+            <Link href="/#produk-kami" className="nav-pill px-4 py-2">Produk</Link>
+            <Link href="/#faq" className="nav-pill px-4 py-2">FAQ</Link>
           </nav>
 
           {/* Desktop Actions */}
@@ -122,7 +122,7 @@ export default function Header() {
                 </svg>
               </button>
               {showSuggestions && (
-                <div className="absolute right-0 top-full mt-2 w-64 card-elevated rounded-xl border-border-hover overflow-hidden shadow-xl anim-scale-in" role="listbox">
+                <div className="absolute right-0 top-full mt-2 w-64 card-elevated rounded-md border-border-hover overflow-hidden shadow-xl anim-scale-in" role="list">
                   <div className="p-2 border-b border-border-subtle flex items-center gap-2">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gold" aria-hidden="true">
                       <circle cx="11" cy="11" r="8" />
@@ -130,16 +130,15 @@ export default function Header() {
                     </svg>
                     <span className="text-xs font-semibold text-gold uppercase tracking-wider">Saran Pencarian</span>
                   </div>
-                  <ul className="py-1" role="list">
+                  <ul className="py-1">
                     {searchSuggestions.map((s, i) => (
                       <li key={i}>
                         <Link
-                          href={`/?q=${encodeURIComponent(s)}`}
+                          href={s.href}
                           className="block px-4 py-2.5 text-sm text-fg-secondary hover:text-gold hover:bg-gold-muted transition-colors"
-                          role="option"
                           onClick={() => setShowSuggestions(false)}
                         >
-                          {s}
+                          {s.label}
                         </Link>
                       </li>
                     ))}
@@ -155,6 +154,7 @@ export default function Header() {
               Daftar Sekarang
             </a>
 
+          </div>
             {/* Mobile menu button */}
             <button
               className="lg:hidden btn btn-ghost btn-sm p-2"
@@ -168,7 +168,6 @@ export default function Header() {
                 <line x1="3" y1="18" x2="21" y2="18" />
               </svg>
             </button>
-          </div>
         </div>
       </div>
 
@@ -177,14 +176,14 @@ export default function Header() {
         <div className="container-main">
           <div className="flex items-center gap-2 overflow-x-auto pb-3 px-2 -mx-2 scrollbar-hide" role="navigation" aria-label="Game categories">
             {[
-              { label: "Semua", href: "#", active: true },
-              { label: "Slot Gacor", href: "#slot", active: false },
-              { label: "Live Casino", href: "#casino", active: false },
-              { label: "Sportsbook", href: "#sports", active: false },
-              { label: "Togel", href: "#togel", active: false },
-              { label: "Poker", href: "#poker", active: false },
-              { label: "Arcade", href: "#arcade", active: false },
-              { label: "Virtual", href: "#virtual", active: false },
+              { label: "Semua", href: "/", active: true },
+              { label: "Slot Gacor", href: "/rtp", active: false },
+              { label: "Live Casino", href: "/#produk-kami", active: false },
+              { label: "Sportsbook", href: "/#produk-kami", active: false },
+              { label: "Togel", href: "/#produk-kami", active: false },
+              { label: "Arcade", href: "/#produk-kami", active: false },
+              { label: "Merchandise", href: "/t-shirts", active: false },
+              { label: "FAQ", href: "/#faq", active: false },
             ].map((cat, i) => (
               <Link
                 key={cat.label}
@@ -206,8 +205,8 @@ export default function Header() {
             <Link href="/" className="nav-pill px-4 py-3 justify-start" onClick={() => setOpen(false)}>Beranda</Link>
             <Link href="/rtp" className="nav-pill px-4 py-3 justify-start" onClick={() => setOpen(false)}>RTP Slot</Link>
             <Link href="/t-shirts" className="nav-pill px-4 py-3 justify-start" onClick={() => setOpen(false)}>Merchandise</Link>
-            <Link href="#produk" className="nav-pill px-4 py-3 justify-start" onClick={() => setOpen(false)}>Produk</Link>
-            <Link href="#faq" className="nav-pill px-4 py-3 justify-start" onClick={() => setOpen(false)}>FAQ</Link>
+            <Link href="/#produk-kami" className="nav-pill px-4 py-3 justify-start" onClick={() => setOpen(false)}>Produk</Link>
+            <Link href="/#faq" className="nav-pill px-4 py-3 justify-start" onClick={() => setOpen(false)}>FAQ</Link>
           </nav>
         </div>
       )}

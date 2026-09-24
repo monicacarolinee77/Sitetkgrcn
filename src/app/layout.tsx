@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Orbitron } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -20,71 +20,72 @@ const orbitron = Orbitron({
   weight: ["400", "500", "700", "900"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://tokogacor.run"),
-  title: {
-    default: "TOKOGACOR® — game mabar Mantap Kemenangan Berlimpah | Login Resmi 2026",
-    template: "%s | TOKOGACOR",
-  },
-  description:
-    "TOKOGACOR 2026 — panduan game mabar mantap & kemenangan berlimpah. Link resmi tokogacor.run stabil 24 jam, login 5 detik, deposit Rp 10.000 via bank/E-Wallet/QRIS, bonus harian transparan. Daftar & login sekarang.",
-  keywords: [
-    "TOKOGACOR",
-    "TOKO GACOR",
-    "situs slot gacor",
-    "slot maxwin",
-    "situs slot terpercaya",
-    "game slot",
-    "slot88",
-    "slot online",
-    "slot gacor 2026",
-    "link alternatif tokogacor",
-    "login tokogacor",
-    "tokogacor resmi",
-    "tokogacor official",
-    "tokogacor slot",
-    "tokogacor web",
-    "tokogacor deposit",
-    "tokogacor withdraw",
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://athena168.run";
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "athena168",
+  url: SITE_URL,
+  logo: `${SITE_URL}/LOGO.png`,
+  sameAs: [
+    "https://www.facebook.com/athena168",
+    "https://www.instagram.com/athena168",
+    "https://twitter.com/athena168",
+    "https://www.youtube.com/@athena168",
   ],
-  authors: [{ name: "Tim TOKOGACOR" }],
-  creator: "TOKOGACOR",
-  publisher: "TOKOGACOR",
-  alternates: {
-    canonical: "https://tokogacor.run/",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+62-800-123-4567",
+    contactType: "customer service",
+    availableLanguage: ["Indonesian", "English"],
   },
-  verification: {
-    google: [
-      "a8SFZEB231Y1OawnznizukzZFSyP5S_bFnt0i7DD23U",  // tokogacor.run (Vercel)
-      "027e5okYKR3QK4D1Sp-y0Gv8Yt4jRwj9I1YO5PDzJtA",  // tokogacorslot.netlify.app (Netlify)
-    ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "athena168",
+  url: SITE_URL,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
   },
-  openGraph: {
-    title: "TOKOGACOR® — game mabar Mantap Kemenangan Berlimpah | Login Resmi 2026",
-    description: "Link resmi TOKOGACOR stabil 24 jam. Login 5 detik, deposit Rp 10.000, bonus harian transparan. Panduan lengkap 2026.",
-    url: "https://tokogacor.run/",
-    siteName: "TOKOGACOR",
-    type: "website",
-    locale: "id_ID",
-    images: [{ url: "/og-tokogacor.jpg", width: 1200, height: 630, alt: "TOKOGACOR - game mabar Mantap" }],
+  publisher: {
+    "@type": "Organization",
+    name: "athena168",
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/LOGO.png`,
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "TOKOGACOR® — game mabar Mantap Kemenangan Berlimpah",
-    description: "Link resmi stabil 24 jam, login cepat, bonus harian. Panduan TOKOGACOR 2026.",
-    images: ["/og-tokogacor.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
-  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0a1628",
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: { default: "athena168® — Platform Gaming Terpercaya 2026", template: "%s | athena168" },
+  description: "athena168 2026 — platform gaming terpercaya dengan akses stabil 24 jam. Daftar, login, dan jelajahi berbagai permainan dengan transaksi aman dan penawaran transparan.",
+  keywords: ["athena168", "platform gaming", "permainan", "informasi rtp", "rekomendasi game", "panduan bermain", "akses platform", "transaksi aman", "penawaran harian" ],
+  authors: [{ name: "Tim athena168" }],
+  creator: "athena168",
+  publisher: "athena168",
+  alternates: { canonical: SITE_URL },
+  verification: { google: ["a8SFZEB231Y1OawnznizukzZFSyP5S_bFnt0i7DD23U"] },
+  openGraph: { title: "athena168® — Platform Gaming Terpercaya 2026", description: "Platform gaming dengan akses stabil 24 jam. Transaksi aman, penawaran harian, dan informasi RTP lengkap.", url: SITE_URL, siteName: "athena168", type: "website", locale: "id_ID", images: [{ url: "/LOGO.png", width: 1200, height: 630, alt: "athena168 - Platform Gaming" }] },
+  twitter: { card: "summary_large_image", title: "athena168® — Platform Gaming Terpercaya 2026", description: "Akses stabil 24 jam, transaksi aman, penawaran harian. Informasi RTP dan panduan bermain lengkap.", images: ["/LOGO.png"] },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   category: "Entertainment",
-  icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/apple-icon.png",
-  },
+  icons: { icon: "/LOGO.png", shortcut: "/LOGO.png", apple: "/apple-icon.png" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -93,6 +94,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="id"
       className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Header />
         <div className="flex-1 flex flex-col cyber-bg relative">

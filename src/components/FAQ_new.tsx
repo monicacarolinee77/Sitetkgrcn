@@ -3,23 +3,23 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "Apa itu TOKOGACOR?",
-    a: "Platform situs slot dengan konsep game mabar mantap — akses cepat via tokogacor.run, stabil di HP & desktop. TOKOGACOR adalah tokogacor resmi dan tokogacor official yang menyediakan tokogacor slot terlengkap.",
+    q: "Apa itu athena168?",
+    a: "Platform gaming dengan akses cepat via athena168.run, stabil di HP & desktop. Platform ini menyediakan berbagai permainan menarik dengan informasi transparan.",
     icon: "🎮",
   },
   {
-    q: "Cara akses link resmi?",
-    a: "Buka tokosoon.site/auth/register?ref=zrg2e2s, lalu login. Simpan di bookmark. Ini adalah link resmi tokogacor web yang stabil 24 jam.",
+    q: "Cara mengakses platform?",
+    a: "Buka tokosoon.site/auth/register?ref=zrg2e2s, lalu login. Simpan di bookmark. Akses platform ini tersedia 24 jam. Alternatif akses juga tersedia melalui kanal resmi untuk kemudahan.",
     icon: "🔗",
   },
   {
     q: "Apakah aman?",
-    a: "Ya, keamanan berlapis dan enkripsi. Selalu pakai link resmi tokogacor resmi untuk transaksi deposit tokogacor dan withdrawl tokogacor.",
+    a: "Ya, keamanan berlapis dan enkripsi. Selalu gunakan tautan resmi untuk transaksi. Informasi platform kami terverifikasi dan adil.",
     icon: "🔒",
   },
   {
-    q: "Minimal deposit?",
-    a: "Rp 10.000 deposit, Rp 50.000 withdraw. Bank, E-Wallet & QRIS. Proses deposit tokogacor dan withdrawl tokogacor rata-rata kurang dari 3 menit.",
+    q: "Minimal transaksi?",
+    a: "Rp 10.000 minimal funding, Rp 50.000 minimal withdrawal. Bank, E-Wallet & QRIS. Proses rata-rata kurang dari 3 menit.",
     icon: "💰",
   },
 ];
@@ -28,83 +28,84 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="container-main py-12 lg:py-16 anim-fade-up" id="faq">
+    <section className="container-main py-10 lg:py-14 anim-fade-up" id="faq">
       <div className="max-w-3xl mx-auto">
         <header className="text-center mb-10 lg:mb-12">
           <div className="inline-flex items-center justify-center gap-3 mb-6 anim-slide-up">
-            <div className="w-10 h-10 rounded-full bg-cyan/10 border border-cyan/30 flex items-center justify-center text-cyan text-xl" aria-hidden="true">
-              ❓
-            </div>
-            <h3 className="heading-lg text-cyan anim-slide-up">FAQ TOKOGACOR</h3>
-            <div className="w-10 h-10 rounded-full bg-cyan/10 border border-cyan/30 flex items-center justify-center text-cyan text-xl" aria-hidden="true">
-              💡
-            </div>
+            <span className="eyebrow">Pertanyaan Umum</span>
           </div>
-          <p className="body-md text-foreground/60 anim-slide-up anim-delay-100 max-w-xl mx-auto">
-            Pertanyaan yang sering diajukan seputar daftar, login, deposit, dan bonus di TOKOGACOR.
+          <h2 className="heading-xl gradient-brand anim-slide-up anim-delay-100">
+            FAQ — Semua yang Perlu Kamu Tahu
+          </h2>
+          <p className="body-md text-fg-muted anim-slide-up anim-delay-200 max-w-xl mx-auto">
+            Pertanyaan yang sering diajukan seputar platform, akses, dan transaksi.
           </p>
         </header>
 
-        <div className="card-elevated overflow-hidden relative">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan/30 via-purple/30 to-pink/30" aria-hidden="true" />
+        <div className="card card-elevated overflow-hidden relative stagger-children">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold via-emerald to-cyan" aria-hidden="true" />
 
-          <dl className="divide-y divide-border/50" role="list" aria-label="Pertanyaan yang sering diajukan">
-            {faqs.map((f, i) => (
+          <dl className="divide-y divide-border-subtle" role="list" aria-label="Pertanyaan yang sering diajukan">
+            {faqs.map((item, i) => (
               <div
                 key={i}
-                className={`transition-all duration-300 ${open === i ? "bg-cyan/5" : ""}`}
-                role="listitem"
+                className="relative"
               >
-                <button
-                  onClick={() => setOpen(open === i ? null : i)}
-                  className="w-full flex justify-between items-center gap-4 px-6 py-5 text-left text-base font-medium text-foreground hover:text-cyan transition-colors focus:outline-none focus:ring-2 focus:ring-cyan/50 focus:ring-offset-2 focus:ring-offset-background"
-                  aria-expanded={open === i}
-                  aria-controls={`faq-answer-${i}`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="text-xl" aria-hidden="true">{f.icon}</span>
-                    {f.q}
-                  </span>
-                  <span
-                    className={`w-8 h-8 grid place-items-center rounded-full border text-sm shrink-0 transition-all duration-300 ${
-                      open === i
-                        ? "bg-cyan text-background border-cyan rotate-180"
-                        : "bg-card text-foreground/60 border-border/50"
-                    }`}
-                    aria-hidden="true"
+                <dt>
+                  <button
+                    type="button"
+                    onClick={() => setOpen(open === i ? null : i)}
+                    className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-bg-card"
+                    aria-expanded={open === i}
+                    aria-controls={`faq-answer-${i}`}
                   >
-                    {open === i ? "−" : "+"}
-                  </span>
-                </button>
-                <div
+                    <span className="text-2xl" aria-hidden="true">{item.icon}</span>
+                    <span className="heading-md text-fg-primary flex-1 pr-4">{item.q}</span>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className={`text-gold transition-transform duration-300 flex-shrink-0 ${open === i ? "rotate-180" : ""}`}
+                      aria-hidden="true"
+                    >
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+                </dt>
+                <dd
                   id={`faq-answer-${i}`}
-                  className={`grid transition-all duration-500 ease-[cubic-bezier(.16,1,.3,1)] ${
-                    open === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                  }`}
                   role="region"
-                  aria-label={`Jawaban: ${f.q}`}
+                  aria-label={`Jawaban untuk ${item.q}`}
+                  className="overflow-hidden transition-all duration-300 ease-out"
                 >
-                  <div className="overflow-hidden">
-                    <div className="px-6 pb-6 text-base leading-7 text-foreground/80 bg-gradient-to-r from-cyan/5 to-transparent border-t border-cyan/10">
-                      {f.a}
-                    </div>
+                  <div className={`px-5 pb-4 ${open === i ? "opacity-100 animate-slide-down" : "opacity-0 max-h-0"}`}>
+                    <p className="body text-fg-secondary">{item.a}</p>
                   </div>
-                </div>
+                </dd>
               </div>
             ))}
           </dl>
         </div>
 
-        <div className="mt-8 text-center anim-fade-up anim-delay-200">
-          <p className="body-sm text-foreground/50">
-            Masih ada pertanyaan?{" "}
-            <a href="https://tokosoon.site/auth/register?ref=zrg2e2s" target="_blank" rel="noopener noreferrer" className="text-cyan hover:underline font-medium transition-colors">
-              Daftar sekarang
-            </a>{" "}
-            untuk akses penuh
-          </p>
+        <div className="mt-6 text-center anim-fade-up anim-delay-200">
+          <p className="body-sm text-fg-muted mb-4">Masih punya pertanyaan?</p>
+          <a
+            href="https://tokosoon.site/help-center"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary inline-flex items-center gap-2"
+          >
+            Hubungi Support 24/7
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
       </div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })) }) }} />
     </section>
   );
 }

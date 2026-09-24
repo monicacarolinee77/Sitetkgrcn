@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { generateGameRtp, formatRtp } from "@/lib/rtp-utils";
-
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://athena168.run";
 // Expanded game data with more games per provider - all games now under TOKOGACOR brand
 const providers = [
   {
@@ -136,10 +136,11 @@ const jsonLd = {
   publisher: { "@type": "Organization", name: "TOKOGACOR" },
   datePublished: "2026-09-18",
   dateModified: "2026-09-18",
-  mainEntityOfPage: "https://tokogacor.run/rtp",
+  mainEntityOfPage: `${siteUrl}/rtp`,
 };
 
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title: "RTP Slot Tertinggi 2026 | Rekomendasi Game Pragmatic, PG Soft, Microgaming, Playtech, Jili, Habanero",
   description: "Daftar RTP slot tertinggi 2026 dari 6 provider terpopuler. Cek RTP, volatilitas, max win & fitur game Gates of Olympus, Mahjong Ways 2, Mega Moolah, Age of Gods, Super Ace, Hot Hot Fruit & lainnya.",
   keywords: [
@@ -160,10 +161,11 @@ export const metadata = {
     "tokogacor deposit",
     "tokogacor withdraw",
   ],
+  alternates: { canonical: `${siteUrl}/rtp` },
   openGraph: {
     title: "RTP Slot Tertinggi 2026 | Rekomendasi Game 6 Provider Terpopuler",
     description: "Cek RTP slot tertinggi dari Pragmatic, PG Soft, Microgaming, Playtech, Jili, Habanero. Data update 2026.",
-    url: "https://tokogacor.run/rtp",
+    url: `${siteUrl}/rtp`,
     siteName: "TOKOGACOR",
     type: "website",
     locale: "id_ID",
@@ -208,11 +210,11 @@ export default function RTPPage() {
         </nav>
 
         <header className="text-center max-w-3xl mx-auto mb-12 anim-slide-up">
-          <span className="eyebrow">Data Real-Time 2026</span>
+          <span className="eyebrow">Data RTP 2026</span>
           <h1 className="heading-xl text-cyan mt-4">RTP Slot Tertinggi 2026</h1>
           <p className="body-lg text-foreground/70 mt-4">
             Rekomendasi game dari <strong className="text-cyan font-semibold">6 provider terpopuler</strong> dengan RTP, volatilitas, max win & fitur lengkap.
-            Data diupdate berkala untuk akurasi maksimal.
+            Informasi RTP, volatilitas, dan fitur disusun untuk membantu memilih permainan.
           </p>
           <div className="mt-6 flex flex-wrap gap-3 justify-center">
             {["Pragmatic Play", "PG Soft", "Microgaming", "Playtech", "Jili", "Habanero"].map((p) => (
@@ -228,7 +230,7 @@ export default function RTPPage() {
       <section className="container-main py-8 lg:py-12 anim-fade-up">
         <div className="space-y-16">
           {providerRtps.map((provider, pIdx) => (
-            <article key={provider.slug} id={provider.slug} className="anim-slide-up" style={{ animationDelay: `${pIdx * 100}ms` }}>
+            <article key={provider.slug} id={provider.slug} className="anim-slide-up">
               {/* Provider Header */}
               <header className="mb-8 pb-4 border-b border-border/30">
                 <div className="flex items-center gap-4 mb-4">
@@ -256,7 +258,6 @@ export default function RTPPage() {
                   <div
                     key={game.name}
                     className="card-elevated p-6 hover:border-cyan/30 transition-all duration-300 group"
-                    style={{ animationDelay: `${gIdx * 50}ms` }}
                   >
                     <div className="flex items-start justify-between gap-4 mb-4">
                       <h3 className="heading-sm text-foreground group-hover:text-cyan transition-colors flex-1 pr-4">

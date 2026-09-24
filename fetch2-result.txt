@@ -1,7 +1,0 @@
-ok 46516
-public/favicon.png
-public/icon.png
-public/apple-icon.png
-src/app/favicon.ico
-src/app/icon.png
-src/app/apple-icon.png

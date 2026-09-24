@@ -22,10 +22,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   generateEtags: false,
   // Experimental features for better performance
-  experimental: {
-    optimizeCss: true,
-    optimizePackageImports: ["@headlessui/react"],
-  },
+  // (removed: optimizeCss, optimizePackageImports are deprecated in Next.js 16)
 };
 
 export default nextConfig;
